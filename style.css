@@ -1,0 +1,9 @@
+#newsDiv {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  /* align-items: center; */
+}
+.nav-item {
+  margin-right: 100px;
+}
