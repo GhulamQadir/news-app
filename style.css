@@ -1,9 +1,126 @@
+/* navbar styling */
+.navbar {
+  background-color: white !important;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.newsNameHeading {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px 30px 10px 0px;
+  color: black;
+  text-decoration: none;
+}
+
+.navbarLinks {
+  float: right;
+  justify-content: end;
+}
+
+.nav-item {
+  padding: 10px 30px 10px 0px;
+  font-weight: 500 !important;
+  font-size: 17px !important;
+}
+
+.active {
+  font-weight: bold !important;
+  text-decoration: underline !important;
+  text-underline-offset: 13px !important;
+  text-decoration-thickness: 3px !important;
+}
+
+/* navbar styling end */
+
+/* SEARCH DIV STYLING */
+.searchDiv {
+  /* border: 1px solid black; */
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+#searchInput {
+  width: 40%;
+  padding: 3px 2px 3px 10px;
+  border: 1px solid rgb(180, 177, 177);
+  border-radius: 5px;
+}
+#searchInput:focus {
+  border: 2px solid brown;
+}
+.searchNewsBtn {
+  border-radius: 5px;
+  padding: 0px 15px 0px 15px;
+  background-color: brown;
+  border: none;
+  color: white;
+}
+@media screen and (max-width: 1000px) {
+  #searchInput {
+    width: 70%;
+  }
+}
+@media screen and (max-width: 600px) {
+  #searchInput {
+    width: 80%;
+    font-size: 14px;
+  }
+}
+
+/* NEWS DIV STYLING */
 #newsDiv {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  /* align-items: center; */
+  margin-top: 50px;
 }
-.nav-item {
-  margin-right: 100px;
+.card {
+  margin-bottom: 25px;
+  position: relative;
+}
+.uniqueBadge {
+  position: absolute;
+  top: 8px;
+  left: 4px;
+  background-color: brown;
+  padding: 4px 10px 4px 10px;
+  color: white;
+  border-radius: 20px;
+}
+.cardImg {
+  height: 160px;
+}
+.title_fav_div {
+  display: flex;
+  justify-content: space-between;
+}
+.card-text {
+  font-size: 14.5px;
+  margin: 0 !important;
+}
+.favBtn {
+  background: none;
+  font-size: 22px;
+  border: none;
+}
+.source {
+  margin: 3px 0px 2px 0px;
+  font-size: 14px;
+}
+.sourceHeading {
+  font-weight: bold;
+}
+.timeOfPublish {
+  font-size: 13px;
+  color: rgb(133, 130, 130);
+  margin: 0px 0px 40px 0px;
+}
+.readMoreBtn {
+  background-color: brown;
+  color: white;
+  border: none;
+  padding: 3px 10px 3px 10px;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 13px;
 }
