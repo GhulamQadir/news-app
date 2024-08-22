@@ -39,7 +39,7 @@
                         <a class="nav-link" href="./entertainment-news/entertainment.html">Entertainment</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Favourites</a>
+                        <a class="nav-link" href="./favourites/favourites.html">Favourites</a>
                     </li>
                 </ul>
             </div>
@@ -47,16 +47,19 @@
     </nav>
 
     <div id="mainContainer">
+
         <div class="searchDiv">
             <input id="searchInput" type="text" placeholder="Search news by name, country or more..." />
             <button class="searchNewsBtn" onclick="getNewsBySearch()"><i
                     class="fa-solid fa-magnifying-glass"></i></button>
         </div>
         <div id="newsDiv" data-category="general"></div>
+        <div id="spinner" class="text-center">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
     </div>
-
-    <!-- Pagination -->
-    <button onclick="getData()">Load more</button>
 
 
     <script src="app.js"></script>
