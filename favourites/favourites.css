@@ -1,0 +1,72 @@
+#favsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+.card {
+  margin-bottom: 25px;
+  position: relative;
+  width: 22rem !important;
+}
+.card-body {
+  padding-left: 10px !important;
+  padding-right: 3px !important;
+}
+
+.uniqueBadge {
+  position: absolute;
+  top: 8px;
+  left: 4px;
+  background-color: brown;
+  padding: 4px 10px 4px 10px;
+  color: white;
+  border-radius: 20px;
+}
+.cardImg {
+  height: 200px !important;
+}
+.title_delBtn_div {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+.card-text {
+  font-size: 14.5px;
+  margin: 0 !important;
+}
+.deleteFavBtn {
+  background: none;
+  font-size: 16px;
+  border: none;
+}
+
+.fa-ellipsis {
+  color: rgb(116, 113, 113);
+}
+.fa-ellipsis:hover {
+  background-color: rgb(245, 248, 248);
+  border-radius: 50px !important;
+  padding: 3px 5px;
+}
+.source {
+  margin: 3px 0px 2px 0px;
+  font-size: 14px;
+}
+.sourceHeading {
+  font-weight: bold;
+}
+.timeOfPublish {
+  font-size: 13px;
+  color: rgb(133, 130, 130);
+  margin: 0px 0px 40px 0px;
+}
+.readMoreBtn {
+  background-color: brown;
+  color: white;
+  border: none;
+  padding: 3px 10px 3px 10px;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 13px;
+}

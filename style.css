@@ -95,6 +95,7 @@
 .card {
   margin-bottom: 25px;
   position: relative;
+  width: 22rem;
 }
 .uniqueBadge {
   position: absolute;

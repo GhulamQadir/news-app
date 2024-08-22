@@ -89,13 +89,13 @@ getData = () => {
                         console.log("matched")
                     }
                 }
-                newsDiv.innerHTML += `<div class="card" style = "width: 22rem;">
+                newsDiv.innerHTML += `<div class="card">
              ${!duplicate ? '<span class="uniqueBadge">Unique</span>' : ""} 
                <img src="${image}" class="card-img-top cardImg" alt="...">
                <div class="card-body">
                <div class="title_fav_div">
                <h5 class="card-title">${title.slice(0, 23)}</h5>
-               <button onclick="addToFavourites(\`${title}\`,\`${image}\`,\`${description}\`,\`${source_name}\`,\`${source_url}\`,\`${timeOfPublish}\`,\`${country}\`,\`${getCreator}\`,\`${language}\`, this)" class="favBtn ${matchedColor}"><i class="fa-solid fa-heart"></i></button>
+               <button onclick="addToFavourites(\`${title}\`,\`${image}\`,\`${description}\`,\`${source_name}\`,\`${source_url}\`,\`${pubDate}\`,\`${country}\`,\`${getCreator}\`,\`${language}\`, this)" class="favBtn ${matchedColor}"><i class="fa-solid fa-heart"></i></button>
                </div>
             ${description ? `<p class="card-text description">${description.slice(0, 140)} ...</p>` : ""}  
                <p class="source"><span class="sourceHeading">Source:</span> ${source_name}</p>
