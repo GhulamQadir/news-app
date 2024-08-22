@@ -22,23 +22,21 @@ getFavouriteNews = () => {
 }
 getFavouriteNews()
 
-function FavouriteNews(title, image, description, source_name, source_url, timeOfPublish, country, creator, language) {
+function FavouriteNews(title, image, description, source_name, source_url, pubTime, country, creator, language) {
     this.title = title;
     this.image = image;
     this.description = description;
     this.sourceName = source_name;
     this.sourceUrl = source_url;
-    this.pubTime = timeOfPublish;
+    this.pubTime = pubTime;
     this.country = country;
     this.creator = creator;
     this.language = language;
 }
-addToFavourites = (title, image, description, source_name, source_url, timeOfPublish, country, creator, language, currentBtn) => {
+addToFavourites = (title, image, description, source_name, source_url, pubTime, country, creator, language, currentBtn) => {
     let favNewsMatched = false
-    title = title.replace(/\\/g, "&#92;");
-    description = description.replace(/\\/g, "&#92;");
 
-    console.log(title, image, description, source_name, source_url, timeOfPublish, country, creator, language)
+    console.log(title, image, description, source_name, source_url, pubTime, country, creator, language)
     for (let i = 0; i < favouritesArray.length; i++) {
         if (favouritesArray[i].description === description) {
             favNewsMatched = true
@@ -49,7 +47,7 @@ addToFavourites = (title, image, description, source_name, source_url, timeOfPub
         }
     }
     if (!favNewsMatched) {
-        favouritesArray.unshift(new FavouriteNews(title, image, description, source_name, source_url, timeOfPublish, country, creator, language))
+        favouritesArray.unshift(new FavouriteNews(title, image, description, source_name, source_url, pubTime, country, creator, language))
         localStorage.setItem("favourites", JSON.stringify(favouritesArray))
         console.log("Add hogya")
         currentBtn.style.color = "rgb(198, 55, 55)"
@@ -61,6 +59,25 @@ displayError = (error) => {
     newsDiv.innerHTML = `<p class="error"><span class="errorHeading">Error Occured:</span> ${error}</p>`
 }
 
+function DetailsOfNews(title, image, description, source_name, source_url, timeOfPublish, country, creator, language) {
+    this.title = title;
+    this.image = image;
+    this.description = description;
+    this.sourceName = source_name;
+    this.sourceUrl = source_url;
+    this.timeOfPublish = timeOfPublish;
+    this.country = country;
+    this.creator = creator;
+    this.language = language;
+}
+
+newsDetails = (title, image, description, source_name, source_url, timeOfPublish, country, creator, language) => {
+    sessionStorage.setItem("newsDetails", JSON.stringify(new DetailsOfNews(title, image, description, source_name, source_url, timeOfPublish, country, creator, language)))
+    window.location.assign(newsDiv.dataset.pathofdetails)
+    console.log(newsDiv.dataset)
+}
+
+
 getData = () => {
     spinner.style.display = "block"
     let apiUrl = `https://newsdata.io/api/1/latest?apikey=${randomKey}&q=${newsDiv.dataset.category} ${value}&size=10`
@@ -70,6 +87,7 @@ getData = () => {
     fetch(apiUrl)
         .then(response => response.json())
         .then((data) => {
+            console.log(data)
             spinner.style.display = "none"
             if (data.status === "error") {
                 displayError(data.results.message)
@@ -100,7 +118,7 @@ getData = () => {
             ${description ? `<p class="card-text description">${description.slice(0, 140)} ...</p>` : ""}  
                <p class="source"><span class="sourceHeading">Source:</span> ${source_name}</p>
                <p class="timeOfPublish">${timeOfPublish}</p>
-               <button class="readMoreBtn">Read More</button>
+               <button class="readMoreBtn" onclick="newsDetails(\`${title}\`,\`${image}\`,\`${description}\`,\`${source_name}\`,\`${source_url}\`,\`${timeOfPublish}\`,\`${country}\`,\`${getCreator}\`,\`${language}\`)">Read More</button>
             </div>
         </div>`
             }

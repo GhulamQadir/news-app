@@ -1,13 +1,14 @@
 let favsContainer = document.getElementById('favsContainer')
+let favsArray = JSON.parse(localStorage.getItem("favourites"))
 
 
-
-deleteFavPost = () => {
-
+deleteFavPost = (event, index) => {
+    event.parentNode.parentNode.parentNode.remove()
+    favsArray.splice(index, 1)
+    localStorage.setItem("favourites", JSON.stringify(favsArray))
 }
 
 getFavouriteNews = () => {
-    let favsArray = JSON.parse(localStorage.getItem("favourites"))
     if (favsArray) {
         console.log(favsArray)
         for (let i = 0; i < favsArray.length; i++) {
@@ -19,7 +20,7 @@ getFavouriteNews = () => {
                <div class="card-body">
                <div class="title_delBtn_div">
                <h5 class="card-title">${title.slice(0, 23)}</h5>
-               <button onclick="deleteFavPost()" class="deleteFavBtn"><i class="fa-solid fa-trash"></i></button>
+               <button onclick="deleteFavPost(this,${i})" class="deleteFavBtn"><i class="fa-solid fa-trash"></i></button>
                </div>
             ${description ? `<p class="card-text description">${description.slice(0, 170)} ...</p>` : ""}  
                <p class="source"><span class="sourceHeading">Source:</span> ${sourceName}</p>
