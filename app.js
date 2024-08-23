@@ -5,11 +5,13 @@ let randomNum = Math.floor(Math.random() * 3)
 let randomKey = apiKeys[randomNum]
 
 
+
 let newsDiv = document.getElementById('newsDiv')
 let nextPage = ""
 let value = ""
 let favouritesArray = []
 let spinner = document.getElementById('spinner')
+let searchInput = document.getElementById('searchInput')
 
 // getting favourites news to check whether the current news updates are added to favourites or not
 getFavouriteNews = () => {
@@ -136,8 +138,8 @@ getData = () => {
 getData()
 
 // getting data from api by searching
-getNewsBySearch = () => {
-    let searchInput = document.getElementById('searchInput')
+getNewsBySearch = (event) => {
+    event.preventDefault()
     if (searchInput.value) {
         newsDiv.innerHTML = ""
         value = searchInput.value
@@ -170,3 +172,12 @@ window.addEventListener('scroll', function () {
     }
 });
 
+
+document.addEventListener('keyup', (event) => {
+    if (event.key === "Enter") {
+        if (searchInput.value) {
+            console.log(event)
+            getNewsBySearch(event)
+        }
+    }
+})
