@@ -3,7 +3,6 @@
 let apiKeys = ["pub_51337b3e235f8f9025f884fe1fd4ac29c0e6f", "pub_51445fc3c83707915d3280417e473c9d45166", "pub_51497faa98d4a0250afe72309df8557215867"]
 let randomNum = Math.floor(Math.random() * 3)
 let randomKey = apiKeys[randomNum]
-console.log(randomNum)
 
 
 let newsDiv = document.getElementById('newsDiv')
@@ -12,6 +11,7 @@ let value = ""
 let favouritesArray = []
 let spinner = document.getElementById('spinner')
 
+// getting favourites news to check whether the current news updates are added to favourites or not
 getFavouriteNews = () => {
     let getFavs = JSON.parse(localStorage.getItem("favourites"))
     if (getFavs) {
@@ -22,6 +22,8 @@ getFavouriteNews = () => {
 }
 getFavouriteNews()
 
+
+// constructor function for adding news to favourites
 function FavouriteNews(title, image, description, source_name, source_url, pubTime, country, creator, language) {
     this.title = title;
     this.image = image;
@@ -33,16 +35,16 @@ function FavouriteNews(title, image, description, source_name, source_url, pubTi
     this.creator = creator;
     this.language = language;
 }
+
+// add to favs functionality
 addToFavourites = (title, image, description, source_name, source_url, pubTime, country, creator, language, currentBtn) => {
     let favNewsMatched = false
 
-    console.log(title, image, description, source_name, source_url, pubTime, country, creator, language)
     for (let i = 0; i < favouritesArray.length; i++) {
         if (favouritesArray[i].description === description) {
             favNewsMatched = true
             favouritesArray.splice(i, 1)
             currentBtn.style.color = "black"
-            console.log(favouritesArray)
             localStorage.setItem("favourites", JSON.stringify(favouritesArray))
         }
     }
@@ -54,11 +56,12 @@ addToFavourites = (title, image, description, source_name, source_url, pubTime, 
     }
 }
 
-
+// render error display on page
 displayError = (error) => {
     newsDiv.innerHTML = `<p class="error"><span class="errorHeading">Error Occured:</span> ${error}</p>`
 }
 
+// constructor for viewing details of news
 function DetailsOfNews(title, image, description, source_name, source_url, timeOfPublish, country, creator, language) {
     this.title = title;
     this.image = image;
@@ -71,6 +74,7 @@ function DetailsOfNews(title, image, description, source_name, source_url, timeO
     this.language = language;
 }
 
+// view news details functionality
 newsDetails = (title, image, description, source_name, source_url, timeOfPublish, country, creator, language) => {
     sessionStorage.setItem("newsDetails", JSON.stringify(new DetailsOfNews(title, image, description, source_name, source_url, timeOfPublish, country, creator, language)))
     window.location.assign(newsDiv.dataset.pathofdetails)
@@ -78,6 +82,7 @@ newsDetails = (title, image, description, source_name, source_url, timeOfPublish
 }
 
 
+// get news api data and rendering on page
 getData = () => {
     spinner.style.display = "block"
     let apiUrl = `https://newsdata.io/api/1/latest?apikey=${randomKey}&q=${newsDiv.dataset.category} ${value}&size=10`
@@ -98,7 +103,6 @@ getData = () => {
                 let { title, description, image_url, duplicate, source_name, source_url, pubDate, country, creator, language } = results[i]
                 let image = image_url ? image_url : "https://i.pinimg.com/originals/da/9a/83/da9a837c41ca183a3d5f8d4dca495955.png"
                 let timeOfPublish = moment(pubDate).fromNow();
-                let getCreator = creator ? creator : ""
 
                 let matchedColor = ""
                 for (let j = 0; j < favouritesArray.length; j++) {
@@ -113,12 +117,12 @@ getData = () => {
                <div class="card-body">
                <div class="title_fav_div">
                <h5 class="card-title">${title.slice(0, 23)}</h5>
-               <button onclick="addToFavourites(\`${title}\`,\`${image}\`,\`${description}\`,\`${source_name}\`,\`${source_url}\`,\`${pubDate}\`,\`${country}\`,\`${getCreator}\`,\`${language}\`, this)" class="favBtn ${matchedColor}"><i class="fa-solid fa-heart"></i></button>
+               <button onclick="addToFavourites(\`${title ? title : ""}\`,\`${image}\`,\`${description ? description : ""}\`,\`${source_name ? source_name : ""}\`,\`${source_url ? source_url : ""}\`,\`${pubDate ? pubDate : ""}\`,\`${country ? country : ""}\`,\`${creator ? creator : ""}\`,\`${language ? language : ""}\`, this)" class="favBtn ${matchedColor}"><i class="fa-solid fa-heart"></i></button>
                </div>
             ${description ? `<p class="card-text description">${description.slice(0, 140)} ...</p>` : ""}  
                <p class="source"><span class="sourceHeading">Source:</span> ${source_name}</p>
                <p class="timeOfPublish">${timeOfPublish}</p>
-               <button class="readMoreBtn" onclick="newsDetails(\`${title}\`,\`${image}\`,\`${description}\`,\`${source_name}\`,\`${source_url}\`,\`${timeOfPublish}\`,\`${country}\`,\`${getCreator}\`,\`${language}\`)">Read More</button>
+               <button class="readMoreBtn" onclick="newsDetails(\`${title ? title : ""}\`,\`${image}\`,\`${description ? description : ""}\`,\`${source_name ? source_name : ""}\`,\`${source_url ? source_url : ""}\`,\`${timeOfPublish ? timeOfPublish : ""}\`,\`${country ? country : ""}\`,\`${creator ? creator : ""}\`,\`${language ? language : ""}\`)">Read More</button>
             </div>
         </div>`
             }
@@ -131,7 +135,7 @@ getData = () => {
 }
 getData()
 
-
+// getting data from api by searching
 getNewsBySearch = () => {
     let searchInput = document.getElementById('searchInput')
     if (searchInput.value) {
@@ -142,6 +146,7 @@ getNewsBySearch = () => {
 }
 
 
+// rendering next page of data when page scrolls
 let eventTriggered = false;
 let lastTriggerPosition = 0;
 

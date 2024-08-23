@@ -3,14 +3,6 @@
   background-color: white !important;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-.newsNameHeading {
-  font-size: 30px;
-  font-weight: bold;
-  text-align: center;
-  padding: 10px 30px 10px 0px;
-  color: rgb(165, 47, 47);
-  text-decoration: none;
-}
 
 .navbarLinks {
   float: right;
@@ -29,6 +21,14 @@
   text-underline-offset: 13px !important;
   text-decoration-thickness: 3px !important;
 }
+.newsNameHeading {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px 30px 10px 0px;
+  color: rgb(165, 47, 47);
+  text-decoration: none;
+}
 
 /* navbar styling end */
 
@@ -38,6 +38,7 @@
   flex-direction: column;
 }
 
+/* loading indicator styling */
 #spinner {
   display: none;
 }
